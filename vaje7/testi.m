@@ -38,4 +38,4 @@ obesisceD = [4;4];
 %w =
 %   -1.0325
 %   -6.4163
-diskrVeriznica([1;-1],obesisceL,obesisceD,L,M)
+diskrVeriznica([-1;1],obesisceL,obesisceD,L,M)

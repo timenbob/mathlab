@@ -24,13 +24,10 @@ function x = diskrVeriznica(w,obesisceL,obesisceD,L,M)
 % izhod:
 
 % x je 2x(n+2) tabela koordinat vozlisc.
-[q,m]=size(M);
-n=m-1;
+sz=size(M);
+n=sz(2)-1;
 
 x=zeros(2,2+n);
-
-u=w(1);
-v=w(2);
 
 % vektor mi-jev 'mi' in vektor delnih vsot 'vsote_mi' (vsote_mi = [0,mi_1,mi_1+mi_2,...]; ukaz cumsum)
 
@@ -44,23 +41,38 @@ vsote_mi=[0 cumsum(M)]./2;
 F = @(w) F_uv(w,obesisceL,obesisceD,L,vsote_mi);
 
 W=fsolve(F,w);
-U=W(1,:);
-V=W(:,1);
+u=W(1);
+v=W(2);
 % izracunamo x-e
 
 % glej (3.16) ter (3.18), (3.19) ter (3.8) in (3.9)
-
-ksi=cumsum(U);
-eta=cumsum(V);
-
-
-for i=1:size(L)
-    x(i:1)=obesisceL(1)+ksi(i);
+ksi=zeros(size(L));
+for i =1:length(L)
+    ksi(i)=L(i)/(sqrt(1+(v-u*vsote_mi(i)).^2));
 end
 
-for i=1:size(L)
-    x(i:2)=obesisceL(2)+eta(i);
+eta=zeros(size(L));
+for i =1:length(L)
+    eta(i)=ksi(i)*(v-u*vsote_mi(i));
 end
+
+
+vsota_ksi=cumsum(ksi);
+vsota_eta=cumsum(eta);
+
+
+for i=2:n+1
+    x(1,i)=obesisceL(1)+vsota_ksi(i-1);
+end
+
+for i=2:n+1
+    x(2,i)=obesisceL(2)+vsota_eta(i-1);
+end
+
+x(1)=obesisceL(1);
+x(2)=obesisceL(2);
+x(1,n+2)=obesisceD(1);
+x(2,n+2)=obesisceD(2);
 
 % narisemo veriznico
 
