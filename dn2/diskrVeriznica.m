@@ -1,4 +1,4 @@
-function t = diskrVeriznica(w0,obesisceL,obesisceD,L,M)
+function x = diskrVeriznica(w0,obesisceL,obesisceD,L,M)
 
 % function x = diskrVeriznica(w0,obesisceL,obesisceD,L,M)
 % diskrVeriznica resi problem diskretne veriznice: preko fsolve najde u in v, tako da
@@ -17,13 +17,13 @@ function t = diskrVeriznica(w0,obesisceL,obesisceD,L,M)
 
 % vektor mi-jev 'mi' in vektor delnih vsot 'vsote_mi' (vsote_mi = [0,mi_1,mi_1+mi_2,...]; ukaz cumsum)
 % glej (3.13) in delno vsoto, ki se pojavlja v (3.16),(3.18),(3.19)
-
-vsote_mi = [];
-for i = 1:size(M, 2)-1
-    vsote_mi(i) = (M(i) + M(i+1))/2;
+[n,m]=size(L);
+mi=zeros(1,m-1);
+for i=1:m-1
+    mi(i)=(M(i)+M(i+1))/2;
 end
 
-vsote_mi = [0, cumsum(vsote_mi)];
+vsote_mi = [0, cumsum(mi)];
 
 % iskanje nicle F(u,v) = [U(u,v);V(u,v)]
 
@@ -36,15 +36,24 @@ v = w(2);
 % izracunamo x-e
 % glej (3.16) ter (3.18), (3.19) ter (3.8) in (3.9)
 
-ksi = L./sqrt(1 + (v - u*vsote_mi).^2);
-eta = ksi.*(v-u*vsote_mi);
+n=size(L,2);
+ksi=zeros(1,n);
+for i=1:n
+    ksi(i)=L(i)./sqrt(1+(v-u.*vsote_mi(i)).^2);
+end
+eta=zeros(1,n);
 
-x = [obesisceL(1), obesisceL(1) + cumsum(ksi)];
-y = [obesisceL(2), obesisceL(2) + cumsum(eta)];
+for i=1: length(L)
+    eta(i)=ksi(i).*(v-u.*vsote_mi(i));
+end
 
-t=[x;y];
+
+x = obesisceL(1) + cumsum(ksi);
+y = obesisceL(2) + cumsum(eta);
+
+x=[obesisceL(1) x;obesisceL(2) y]
 
 % narisemo veriznico
 
-plot(x,y,'ro-','LineWidth',2,'MarkerSize',8,'MarkerFaceColor','r');
+plot(x(1,:),y(2,:),'ro-','LineWidth',2,'MarkerSize',8,'MarkerFaceColor','r');
 end
