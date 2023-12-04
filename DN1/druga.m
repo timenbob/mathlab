@@ -54,6 +54,7 @@ g=9.81;
 w=[-1;-1];
 bol=true;
 vektor_x=[];
+vektor_y=[];
 while bol
     t=diskrVeriznica(w,obesisceL,obesisceD,L,M);
     x=t(1,:);
@@ -66,8 +67,10 @@ while bol
     else
         bol=false;
         vektor_x=[vektor_x,x];
+        vektor_y=y;
     end
 end
 vektor_x;
-o=length(vektor_x);
-odg5=sum(vektor_x)/o
+o=length(vektor_x);%rabimo o da vemo tut kok jje 0čel
+odgneki=sum(vektor_x)/o;
+odg5=sum(vektor_y)/o
