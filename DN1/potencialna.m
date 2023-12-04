@@ -1,15 +1,8 @@
 function E=potencialna(w,obesisceL,obesisceD,L,M)
 %poračuna energijo
-x1=diskrVeriznica(w,obesisceL,obesisceD,L,M);
-[n,m]=size(x1);
+x=diskrVeriznica(w,obesisceL,obesisceD,L,M);
 g=9.81;
-
-y=x1(2,:);
-h=zeros(1, size(M,2));
-for i = 1:size(M,2)
-    h(i)=(y(i)+y(i+1))/2;
-end
-
-E=M*h'*g;
+h=x(2,2:end)/2+x(2,1:end-1)/2;
+E=sum(h.*M)*g;
 
 end

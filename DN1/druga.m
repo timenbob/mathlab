@@ -10,7 +10,7 @@ w=[-1;-1];
 %prva naloga
 x1=diskrVeriznica(w,obesisceL,obesisceD,L,M);
 [n,m]=size(x1);
-odg1=mean(x1(1,:))
+odg1=mean(x1(1,:));
 
 %druga
 %za wp rabimo M G in H mase so kar M G=g in h
@@ -19,7 +19,7 @@ h=zeros(1, size(M,2));
 for i = 1:size(M,2)
     h(i)=(y(i)+y(i+1))/2;
 end
-odg2=M*h'*g
+odg2=M*h'*g;
 
 %tretja
 
@@ -38,18 +38,14 @@ x3=diskrVeriznica(w,obesisceL,obesisceD,LL,MM);
 odg3=x3;
 
 %cetrta
-f(y)=@(y) diskrVeriznica(w0,obesisceL,[x(1,4);y],L(1,1:4),M(1,1:4))+ diskrVeriznica(w0,[x(1,4);y],obesisceD,L(1,4:end),M(1,4:end)) ;       
-f(3)
+s=[2.543175828723523;0.275821184647270];
+%x=diskrVeriznica(w,obesisceL,obesisceD,L,M);
+%naloga4(1,s)
+fun= @(h)naloga4(h,s)-180;
+fzero(fun,1)
 
+%peta
 
-y=x1(2,:);
-h=zeros(1, size(M,2));
-for i = 1:size(M,2)
-    h(i)=(y(i)+y(i+1))/2;
-end
-odg2=M*h'*g;
-
-fzero(@(y) f(y)-180,2);
 
 
 
