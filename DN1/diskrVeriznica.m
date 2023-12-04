@@ -45,6 +45,7 @@ y = [obesisceL(2), obesisceL(2) + cumsum(eta)];
 t=[x;y];
 
 % narisemo veriznico
+barva = rand(1, 3);
+plot(x,y,'ro-','LineWidth',2,'MarkerSize',8,'MarkerFaceColor','r','Color', barva);
 
-plot(x,y,'ro-','LineWidth',2,'MarkerSize',8,'MarkerFaceColor','r');
 end
