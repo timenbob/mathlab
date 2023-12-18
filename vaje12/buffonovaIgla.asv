@@ -1,0 +1,11 @@
+function [naDvehLetvah, priblizekPi] = buffonovaIgla(stPonovitev)
+% function [naDvehLetvah, priblizekPi] = buffonovaIgla(stPonovitev)
+%
+% Problem Buffonove igle, kjer je dolzina igle 1 in razdalja med letvami 1.
+% stPonovitev je stevilo ponovitev poskusa
+% naDvehLetvah je stevilo primerov, ko igla lezi na dveh letvah
+% priblizekPi = 2*stPonovitev/naDvehLetvah
+
+[v,fi]=[randi([1,10]) ,rand*2*pi];
+zg=v+sin(fi)
+sp=
