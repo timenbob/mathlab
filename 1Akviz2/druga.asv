@@ -1,0 +1,15 @@
+format long
+T1=[1;5];
+T2=[6;2];
+g=9.81;
+%%%%%%%%%%%%%%%%%
+%prva
+odg1=brahistohrona(T1,T2);
+
+%druga
+T1_2=[3;2];
+t1=brahistohrona(T1,T1_2);
+t2=3/sqrt
+
+%tretja
+odg3=sqrt(2*g*3)
