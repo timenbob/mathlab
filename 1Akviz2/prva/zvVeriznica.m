@@ -39,8 +39,8 @@ lambda=A-C*cosh((a-D)/C);
 % funkcija w, enacba (4)
 w = @(x)lambda + C*cosh((x-D)/C) ;
 
-D
-w(D)
+D;
+w(D);
 
 % graf veriznice
 x = linspace(a,b,100);

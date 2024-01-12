@@ -16,7 +16,8 @@ fun3=@(l) zvVeriznica_tri([0,20],[10,15],l,10^-15) - 14;
 odg3=fzero(fun3,15);
 
 %cetrta
-T4=zvVeriznica(obesisceL,obesisceD,14,tol);
-odg4=T4(1)-T1(1)
+tocka4=T1;
+dolzina = zvVeriznica_dolzina(obesisceL,obesisceD,15,tol,tocka4);
 
-
+tocka5 = zvVeriznica_dolzina_kam_pridemo(obesisceL,obesisceD,14,tol,dolzina)
+odg4=tocka4(1)-tocka5(1)
