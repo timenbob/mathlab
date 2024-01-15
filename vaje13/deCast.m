@@ -3,12 +3,13 @@ function tocke = deCast(b,t)
 % Casteljaujevega algoritma.
 % b je vektor velikosti (n+1),
 % metoda vrne tocke, enake velikosti kot je t.
-tocke=b;
-n=length(b);
-for j=1:n
-    for k=1:n-j
-        tocke(k) = tocke(k) * (1 - t) + tocke(k + 1) * t;
+tocke=zeros(1,length(t));
+for k=1:length(t)
+    for j=1:length(b)
+        for i=1:length(b)-j
+            b(i) = b(i) * (1 - t(k)) + b(i + 1) * t(k);
+        end
     end
+    tocke(1,k)=b(1,1);
 end
 
-tocke
