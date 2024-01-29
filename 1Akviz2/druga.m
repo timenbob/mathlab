@@ -24,5 +24,5 @@ y_min = brahistohrona_Ymin(T1,T2);
 odg4=sqrt(2*g*(5-y_min));
 
 %peta
-cas = brahistohrona5(T1,T2)
+%cas = brahistohrona5(T1,T2)
 

@@ -7,8 +7,12 @@ function [theta,k] = poisciOpt_theta_k(b,B)
 
 % definiramo funkcijo g (konec strani 2)
 
-% resimo nelin. enacbo (s funkcijo fzero) --> theta, k
 
+g=@(th) 1 - cos(th)+B/b*(th-sin(th));
+
+% resimo nelin. enacbo (s funkcijo fzero) --> theta, k
+theta=fzero(g,pi);
+k=sqrt(2*b/(theta-sin(theta)));
 
 
 end
