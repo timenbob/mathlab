@@ -18,11 +18,15 @@ hold on
 plot(bx,by,'ro--')
 hold on
 %%%%%%%%%%%%
-fun2=@(x) 2+0*x;
-ay=fun2(Tx);
-plot(ay,Tx)
+f=@(x) deCast2test(bx,x)-2;
+z=fzero(f,1/3);
+y=deCast2(by,z);
+odg=y(end)
+
 %%%%%%%%%%%
-r_b=rotacija_bezjej(b,pi/6)
+b=[bx;by];
+r_b=rotacija_bezjej(b,pi/6);
+%rabis se k in n da nrdis funkcijo
 
 
 
